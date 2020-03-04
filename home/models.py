@@ -1,14 +1,14 @@
 from django.db import models
-
 try:
-    from PIL import Image
     from array import array
     import pytesseract
     import json
-    import monthAbbr
     import calendar
 except ImportError:
-    import Image
+    from array import array
+    import pytesseract
+    import json
+    import calendar
 
 
 def month_abbr_to_number(month_abbr):
@@ -27,9 +27,11 @@ def month_number_to_abbr(month_number):
 
 
 # If you don't have tesseract executable in your PATH, include the following:
-pytesseract.pytesseract.tesseract_cmd = r'tesseract.exe'
+pytesseract.pytesseract.tesseract_cmd = r'C:\Users\BMART\AppData\Local\Tesseract-OCR\tesseract.exe'
 
-testimage = pytesseract.image_to_string(Image.open('testimage.png'))
+testimage = pytesseract.image_to_string('testimage.PNG')
 
 # insert into a list by removing white space
+
 z = testimage.split()
+print(z)
