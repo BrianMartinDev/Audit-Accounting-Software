@@ -72,5 +72,57 @@ def picture_to_date(picture):
             print("Failed Month " + month_in_array)
             break
 
+    # Day test
+    day_passed = "25"
+    day_failed = 0
+    keep_going = True
+
+    while keep_going:
+        day_failed = day_failed + 1
+        print("try # ", month_failed)
+
+        # Get Day from list
+        day_to_string = picture[month_index_counter]  # Counter of Month index + 1
+
+        day_to_string = day_to_string.rstrip(',')
+        day_to_int = int(day_to_string)
+
+        for day in range(31):
+            if day == day_to_int:
+                day_to_string_convert = str(day_to_int) + ","
+                break
+
+        for dayz in picture:
+            if day_to_string_convert == dayz:
+                day_to_string_back = day_to_string_convert.rstrip(',')
+                break
+
+        if day_to_string_back == day_passed:
+            print("Passed Day output " + day_to_string_convert + day_passed)
+            keep_going = False
+
+        elif day_to_string_convert:
+            print("Failed Day output " + day_to_string_convert + day_passed)
+            break
+    # Day test
+    time_passed = "10:39"
+    day_failed = 0
+    keep_going = True
+    while keep_going:
+        day_failed = day_failed + 1
+        print("try # ", month_failed)
+
+        # Get Day from list
+        index_of_time = picture[month_index_counter + 1]  # Counter of Month index + 1
+        print(index_of_time)
+
+        if index_of_time == time_passed:
+            print("Passed Time output " + index_of_time)
+            keep_going = False
+
+        elif keep_going:
+            print("Failed Time output " + index_of_time)
+            break
+
 
 print(picture_to_date(z))
