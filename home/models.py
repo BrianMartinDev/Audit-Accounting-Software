@@ -124,5 +124,29 @@ def picture_to_date(picture):
             print("Failed Time output " + index_of_time)
             break
 
+    # Time of Day test
+    time_of_day_passed = ["am", "pm"]
+    time_of_day_failed = 0
+    keep_going = True
+
+    while keep_going:
+        time_of_day_failed = time_of_day_failed + 1
+        print("try # ", month_failed)
+
+        # Get Day from list
+        index_time_of_day = picture[month_index_counter + 2]  # Counter of Month index + 1
+        print(index_time_of_day)
+        for time_formatted in time_of_day_passed: time_formatted.islower()
+
+        if index_time_of_day == time_formatted:
+            print("Passed Time of day output " + index_time_of_day)
+            keep_going = False
+
+        elif keep_going:
+            print("Failed Time of day output " + index_time_of_day)
+            break
+
+    print(month_in_array + index_of_time + index_time_of_day)
+
 
 print(picture_to_date(z))
