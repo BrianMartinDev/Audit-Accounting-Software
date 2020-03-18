@@ -36,6 +36,7 @@ testimage = pytesseract.image_to_string('testimage.PNG')
 
 z = testimage.split()
 print(z)
+print()
 
 
 def picture_to_date(picture):
@@ -61,15 +62,20 @@ def picture_to_date(picture):
                 print(month_index_counter)
                 print(month_in_array)
                 break
+
         if month_in_array == month_passed:
-
             month_to_num = month_abbr_to_number(month_in_array)
-            print("Passed Month " + str(month_to_num))
-
+            print("Passed Month Result: " + str(month_to_num) + " Expected " + month_passed)
+            print("Result converted from: " + month_in_array + " to " + str(month_to_num))
+            print("Expected " + month_passed)
+            print()
             keep_going = False
 
         elif keep_going:
-            print("Failed Month " + month_in_array)
+            print("Failed Month Result: " + month_in_array + " Expected " + month_passed)
+            print("Result: " + month_in_array)
+            print("Expected: " + month_passed)
+            print()
             break
 
     # Day test
@@ -98,11 +104,18 @@ def picture_to_date(picture):
                 break
 
         if day_to_string_back == day_passed:
-            print("Passed Day output " + day_to_string_convert + day_passed)
+            print("Passed Day output")
+            print("Result: " + day_to_string_convert)
+            print("Expected: " + day_passed)
+            print()
+
             keep_going = False
 
         elif day_to_string_convert:
-            print("Failed Day output " + day_to_string_convert + day_passed)
+            print("Failed Day output")
+            print("Result: " + day_to_string_convert)
+            print("Expected: " + day_passed)
+            print()
             break
     # Day test
     time_passed = "10:39"
@@ -117,11 +130,17 @@ def picture_to_date(picture):
         print(index_of_time)
 
         if index_of_time == time_passed:
-            print("Passed Time output " + index_of_time)
+            print("Passed Time output")
+            print("Result: " + index_of_time)
+            print("Expected: " + time_passed)
+            print()
             keep_going = False
 
         elif keep_going:
-            print("Failed Time output " + index_of_time)
+            print("Failed Time output")
+            print("Result: " + index_of_time)
+            print("Expected: " + time_passed)
+            print()
             break
 
     # Time of Day test
@@ -139,14 +158,49 @@ def picture_to_date(picture):
         for time_formatted in time_of_day_passed: time_formatted.islower()
 
         if index_time_of_day == time_formatted:
-            print("Passed Time of day output " + index_time_of_day)
+            print("Passed Time of day output")
+            print("Result: " + index_time_of_day)
+            print("Expected: " + time_formatted)
+            print()
             keep_going = False
 
         elif keep_going:
-            print("Failed Time of day output " + index_time_of_day)
+            print("Failed Time of day output")
+            print("Result: " + index_time_of_day)
+            print("Expected: " + time_formatted)
+            print()
             break
 
     print(month_in_array + index_of_time + index_time_of_day)
+
+    restaurant_name = "Denny's"
+    restaurant_test_failed = 0
+    keep_going = True
+
+    while keep_going:
+        restaurant_test_failed = restaurant_test_failed + 1
+        print("try # ", restaurant_test_failed)
+
+        index_of_restaurant = picture[month_index_counter + 3]
+        print(index_of_restaurant)
+
+        for x in picture[3:len(picture)]:
+            if x == 'Deliveries':
+                break
+            print(x + " dsdsdfsdvsvdvdv")
+
+        if index_of_restaurant == restaurant_name:
+            print("Passed name of restaurant test output")
+            print("Result: " + index_of_restaurant)
+            print("Expected: " + restaurant_name)
+            print()
+            keep_going = False
+
+        elif keep_going:
+            print("Failed name of restaurant")
+            print("Result: " + index_of_restaurant)
+            print("Expected: " + restaurant_name)
+            print()
 
 
 print(picture_to_date(z))
