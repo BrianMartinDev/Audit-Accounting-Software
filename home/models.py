@@ -184,7 +184,7 @@ def picture_to_date(picture):
         index_of_restaurant = picture[month_index_counter + 3]
         print(index_of_restaurant)
 
-        for x in picture[3:len(picture)]:
+        for x in picture[4:len(picture)]:
             if x == 'Deliveries':
                 break
             print(x + " dsdsdfsdvsvdvdv")
@@ -200,6 +200,35 @@ def picture_to_date(picture):
             print("Failed name of restaurant")
             print("Result: " + index_of_restaurant)
             print("Expected: " + restaurant_name)
+            print()
+
+    milage = "2.97"
+    milage_test_failed = 0
+    keep_going = True
+
+    while keep_going:
+        restaurant_test_failed = restaurant_test_failed + 1
+        print("try # ", restaurant_test_failed)
+
+        index_of_milage = picture[month_index_counter + 3]
+        print(index_of_milage)
+
+        for x in picture[10:len(picture)]:
+            if x == 'mi':
+                break
+            print(x + " dsdsdfsdvsvdvdv")
+
+        if index_of_milage == milage:
+            print("Passed milage")
+            print("Result: " + index_of_milage)
+            print("Expected: " + milage)
+            print()
+            keep_going = False
+
+        elif keep_going:
+            print("Failed milage")
+            print("Result: " + index_of_milage)
+            print("Expected: " + milage)
             print()
 
 
