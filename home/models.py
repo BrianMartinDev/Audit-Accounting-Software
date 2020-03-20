@@ -202,33 +202,62 @@ def picture_to_date(picture):
             print("Expected: " + restaurant_name)
             print()
 
-    milage = "2.97"
-    milage_test_failed = 0
+    mileage_test = "2.97"
+    mileage_test_failed = 0
     keep_going = True
 
     while keep_going:
-        restaurant_test_failed = restaurant_test_failed + 1
-        print("try # ", restaurant_test_failed)
+        mileage_test_failed = mileage_test_failed + 1
+        print("try # ", mileage_test_failed)
 
-        index_of_milage = picture[month_index_counter + 3]
-        print(index_of_milage)
+        miles_index = picture.index('mi')
+        print(type(picture[miles_index - 1]))
+        int(miles_index)
+        print(type(miles_index))
+        miles = picture[miles_index - 1]
+        print(miles)
+        print(type(miles))
 
-        for x in picture[10:len(picture)]:
-            if x == 'mi':
-                break
-            print(x + " dsdsdfsdvsvdvdv")
-
-        if index_of_milage == milage:
+        if miles == mileage_test:
             print("Passed milage")
-            print("Result: " + index_of_milage)
-            print("Expected: " + milage)
+            print("Result: " + miles)
+            print("Expected: " + mileage_test)
             print()
             keep_going = False
 
         elif keep_going:
             print("Failed milage")
-            print("Result: " + index_of_milage)
-            print("Expected: " + milage)
+            print("Result: " + miles)
+            print("Expected: " + mileage_test)
+            print()
+
+    minutes_test = "2.14"
+    minutes_test_failed = 0
+    keep_going = True
+
+    while keep_going:
+        minutes_test_failed = minutes_test_failed + 1
+        print("try # ", restaurant_test_failed)
+
+        minutes_index = picture.index('min')
+        print(type(picture[minutes_index - 1]))
+        int(minutes_index)
+        print(type(minutes_index))
+        minutes = picture[minutes_index - 1]
+        print(minutes)
+        print(type(minutes))
+
+        if minutes == minutes_test:
+            print("Passed minutes")
+            print("Result: " + minutes)
+            print("Expected: " + minutes_test)
+            print()
+            keep_going = False
+
+        elif keep_going:
+            print("Failed minutes")
+            print("Result: " + minutes)
+            print("Expected: " + minutes_test)
             print()
 
 
