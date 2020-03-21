@@ -11,7 +11,6 @@ except ImportError:
     import json
     import calendar
 
-
 def month_abbr_to_number(month_abbr):
     # Pass month in abbreviated string format and return month in number format
     abbreviation_to_num = list(calendar.month_abbr).index(month_abbr)
@@ -19,35 +18,46 @@ def month_abbr_to_number(month_abbr):
         abbreviation_to_num = "0" + str(abbreviation_to_num)  # Add 0 if less than 10
     return abbreviation_to_num  # return month in number format
 
-
 def month_number_to_abbr(month_number):
     # Pass month num and return abbreviated string format
     month_num_abbreviated = calendar.month_abbr[month_number]
     # returns abbreviated string format
     return month_num_abbreviated
 
-
 # If you don't have tesseract executable in your PATH, include the following:
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\BMART\AppData\Local\Tesseract-OCR\tesseract.exe'
-
 testimage = pytesseract.image_to_string('testimage.PNG')
 
 # insert into a list by removing white space
-
 z = testimage.split()
 print(z)
 print()
 
 
 def picture_to_date(picture):
+    # ['Feb', '25,', '10:39', 'pm', "Denny's", 'Deliveries', 'Distance', 'Wait', 'Time', 'Base', 'Bonus', 'Estimated', 'Payout', '1ofi', '2.97', 'mi', '2.14', 'min', '$3.99', '$2.78', '$6.77']
+
+    # Tested fields
+    month = ''
+    day = '25'
+    time = '10:39'
+    cycle = ["am", "pm"]
+    restaurant = "Denny's"
+    mileage = '2.97'
+    minutes = '2.14'
+    base_pay = '$3.99'
+    bonus = '$2.78'
+    payout = '$6.77'
+
     # Month test
     month_index_counter = 0
-    month_passed = ""
+    month_passed = month
     month_failed = 0
     keep_going = True
     months_array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
     while keep_going:
+        #Month
         for month_passed in months_array:
             if month_passed in picture:
                 # search through picture and find month
@@ -67,7 +77,7 @@ def picture_to_date(picture):
             month_to_num = month_abbr_to_number(month_in_array)
             print("Passed Month Result: " + str(month_to_num) + " Expected " + month_passed)
             print("Result converted from: " + month_in_array + " to " + str(month_to_num))
-            print("Expected " + month_passed)
+            print("Expected: " + month_passed)
             print()
             keep_going = False
 
@@ -79,7 +89,7 @@ def picture_to_date(picture):
             break
 
     # Day test
-    day_passed = "25"
+    day_passed = day
     day_failed = 0
     keep_going = True
 
@@ -88,7 +98,7 @@ def picture_to_date(picture):
         print("try # ", month_failed)
 
         # Get Day from list
-        day_to_string = picture[month_index_counter]  # Counter of Month index + 1
+        day_to_string = picture[month_index_counter]  # Counter of Month index
 
         day_to_string = day_to_string.rstrip(',')
         day_to_int = int(day_to_string)
@@ -105,20 +115,20 @@ def picture_to_date(picture):
 
         if day_to_string_back == day_passed:
             print("Passed Day output")
-            print("Result: " + day_to_string_convert)
+            print("Result: " + day_to_string_back)
             print("Expected: " + day_passed)
             print()
 
             keep_going = False
 
-        elif day_to_string_convert:
+        elif keep_going:
             print("Failed Day output")
-            print("Result: " + day_to_string_convert)
+            print("Result: " + day_to_string_back)
             print("Expected: " + day_passed)
             print()
             break
     # Day test
-    time_passed = "10:39"
+    time_passed = time
     day_failed = 0
     keep_going = True
     while keep_going:
@@ -144,7 +154,7 @@ def picture_to_date(picture):
             break
 
     # Time of Day test
-    time_of_day_passed = ["am", "pm"]
+    time_of_day_passed = cycle
     time_of_day_failed = 0
     keep_going = True
 
@@ -153,7 +163,7 @@ def picture_to_date(picture):
         print("try # ", month_failed)
 
         # Get Day from list
-        index_time_of_day = picture[month_index_counter + 2]  # Counter of Month index + 1
+        index_time_of_day = picture[month_index_counter + 2]  # Counter of Month index + 2
         print(index_time_of_day)
         for time_formatted in time_of_day_passed: time_formatted.islower()
 
@@ -171,9 +181,7 @@ def picture_to_date(picture):
             print()
             break
 
-    print(month_in_array + index_of_time + index_time_of_day)
-
-    restaurant_name = "Denny's"
+    restaurant_name = restaurant
     restaurant_test_failed = 0
     keep_going = True
 
@@ -187,7 +195,6 @@ def picture_to_date(picture):
         for x in picture[4:len(picture)]:
             if x == 'Deliveries':
                 break
-            print(x + " dsdsdfsdvsvdvdv")
 
         if index_of_restaurant == restaurant_name:
             print("Passed name of restaurant test output")
@@ -202,7 +209,7 @@ def picture_to_date(picture):
             print("Expected: " + restaurant_name)
             print()
 
-    mileage_test = "2.97"
+    mileage_test = mileage
     mileage_test_failed = 0
     keep_going = True
 
@@ -212,26 +219,23 @@ def picture_to_date(picture):
 
         miles_index = picture.index('mi')
         print(type(picture[miles_index - 1]))
-        int(miles_index)
-        print(type(miles_index))
+
         miles = picture[miles_index - 1]
-        print(miles)
-        print(type(miles))
 
         if miles == mileage_test:
-            print("Passed milage")
+            print("Passed mileage")
             print("Result: " + miles)
             print("Expected: " + mileage_test)
             print()
             keep_going = False
 
         elif keep_going:
-            print("Failed milage")
+            print("Failed mileage")
             print("Result: " + miles)
             print("Expected: " + mileage_test)
             print()
 
-    minutes_test = "2.14"
+    minutes_test = minutes
     minutes_test_failed = 0
     keep_going = True
 
@@ -241,11 +245,7 @@ def picture_to_date(picture):
 
         minutes_index = picture.index('min')
         print(type(picture[minutes_index - 1]))
-        int(minutes_index)
-        print(type(minutes_index))
         minutes = picture[minutes_index - 1]
-        print(minutes)
-        print(type(minutes))
 
         if minutes == minutes_test:
             print("Passed minutes")
@@ -260,5 +260,81 @@ def picture_to_date(picture):
             print("Expected: " + minutes_test)
             print()
 
+    base_test = base_pay
+    base_pay_test_failed = 0
+    keep_going = True
+
+    while keep_going:
+        base_pay_test_failed = base_pay_test_failed + 1
+        print("try # ", base_pay_test_failed)
+
+        base_pay = picture[-3]
+        if base_pay.startswith('$'):
+            print(base_pay)
+
+        if base_pay == base_test:
+            print("Passed base")
+            print("Result: " + base_pay)
+            print("Expected: " + base_test)
+            print()
+            keep_going = False
+
+        elif keep_going:
+            print("Failed base")
+            print("Result: " + base_pay)
+            print("Expected: " + base_test)
+            print()
+
+    bonus_test = bonus
+    bonus_test_failed = 0
+    keep_going = True
+
+    while keep_going:
+        bonus_test_failed = bonus_test_failed + 1
+        print("try # ", bonus_test_failed)
+
+        bonus_pay = picture[-2]
+        if bonus_pay.startswith('$'):
+            print(bonus_pay)
+
+        if bonus_pay == bonus_test:
+            print("Passed bonus")
+            print("Result: " + bonus_pay)
+            print("Expected: " + bonus_test)
+            print()
+            keep_going = False
+
+        elif keep_going:
+            print("Failed bonus")
+            print("Result: " + bonus_pay)
+            print("Expected: " + bonus_test)
+            print()
+
+    payout_test = payout
+    payout_test_failed = 0
+    keep_going = True
+
+    while keep_going:
+        payout_test_failed = payout_test_failed + 1
+        print("try # ", payout_test_failed)
+
+        payout = picture[-1]
+        if payout.startswith('$'):
+            print(payout)
+
+        if payout == payout_test:
+            print("Passed payout")
+            print("Result: " + payout)
+            print("Expected: " + payout)
+            keep_going = False
+
+        elif keep_going:
+            print("Failed payout")
+            print("Result: " + payout)
+            print("Expected: " + payout_test)
+            print()
+
 
 print(picture_to_date(z))
+print("Time | Restaurant | Distance | Wait | Base | Bonus | payout")
+print()
