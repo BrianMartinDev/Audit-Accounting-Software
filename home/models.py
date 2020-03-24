@@ -11,6 +11,7 @@ except ImportError:
     import json
     import calendar
 
+
 def month_abbr_to_number(month_abbr):
     # Pass month in abbreviated string format and return month in number format
     abbreviation_to_num = list(calendar.month_abbr).index(month_abbr)
@@ -18,11 +19,13 @@ def month_abbr_to_number(month_abbr):
         abbreviation_to_num = "0" + str(abbreviation_to_num)  # Add 0 if less than 10
     return abbreviation_to_num  # return month in number format
 
+
 def month_number_to_abbr(month_number):
     # Pass month num and return abbreviated string format
     month_num_abbreviated = calendar.month_abbr[month_number]
     # returns abbreviated string format
     return month_num_abbreviated
+
 
 # If you don't have tesseract executable in your PATH, include the following:
 pytesseract.pytesseract.tesseract_cmd = r'C:\Users\BMART\AppData\Local\Tesseract-OCR\tesseract.exe'
@@ -35,7 +38,8 @@ print()
 
 
 def picture_to_date(picture):
-    # ['Feb', '25,', '10:39', 'pm', "Denny's", 'Deliveries', 'Distance', 'Wait', 'Time', 'Base', 'Bonus', 'Estimated', 'Payout', '1ofi', '2.97', 'mi', '2.14', 'min', '$3.99', '$2.78', '$6.77']
+    # ['Feb', '25,', '10:39', 'pm', "Denny's", 'Deliveries', 'Distance', 'Wait', 'Time', 'Base', 'Bonus',
+    # 'Estimated', 'Payout', '1ofi', '2.97', 'mi', '2.14', 'min', '$3.99', '$2.78', '$6.77']
 
     # Tested fields
     month = ''
@@ -57,11 +61,10 @@ def picture_to_date(picture):
     months_array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
 
     while keep_going:
-        #Month
+        # Month
         for month_passed in months_array:
             if month_passed in picture:
-                # search through picture and find month
-                break
+                break  # search through picture and find month
 
         month_failed = month_failed + 1
         print("try # ", month_failed)
@@ -108,8 +111,8 @@ def picture_to_date(picture):
                 day_to_string_convert = str(day_to_int) + ","
                 break
 
-        for dayz in picture:
-            if day_to_string_convert == dayz:
+        for days_to_strip in picture:
+            if day_to_string_convert == days_to_strip:
                 day_to_string_back = day_to_string_convert.rstrip(',')
                 break
 
@@ -334,7 +337,5 @@ def picture_to_date(picture):
             print("Expected: " + payout_test)
             print()
 
-
 print(picture_to_date(z))
-print("Time | Restaurant | Distance | Wait | Base | Bonus | payout")
-print()
+print("Time ""| Restaurant | Distance | Wait | Base | Bonus | payout")
