@@ -72,8 +72,10 @@ def picture_to_date(picture):
         for month_in_array in months_array:  # Use all 12 months to find the month in the list
             if month_in_array in picture:  # If month is Feb and is in list
                 month_index_counter = picture.index(month_in_array) + 1  # used to find index of feb
+                print('453535')
                 print(month_index_counter)
                 print(month_in_array)
+                print('453535')
                 break
 
         if month_in_array == month_passed:
@@ -168,7 +170,8 @@ def picture_to_date(picture):
         # Get Day from list
         index_time_of_day = picture[month_index_counter + 2]  # Counter of Month index + 2
         print(index_time_of_day)
-        for time_formatted in time_of_day_passed: time_formatted.islower()
+        for time_formatted in time_of_day_passed:
+            time_formatted.islower()
 
         if index_time_of_day == time_formatted:
             print("Passed Time of day output")
@@ -336,6 +339,7 @@ def picture_to_date(picture):
             print("Result: " + payout)
             print("Expected: " + payout_test)
             print()
+
 
 print(picture_to_date(z))
 print("Time ""| Restaurant | Distance | Wait | Base | Bonus | payout")
